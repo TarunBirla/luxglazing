@@ -83,7 +83,7 @@ class AiAssistantController extends Controller
                     "Warm regards,\n\n" .
                     "Oliver Davies\n" .
                     "Senior Glazing Consultant | Lux Glazing UK\n" .
-                    "020 7946 0991 | https://luxglazing.co.uk/";
+                    "020 7946 0991 | https://luxglazing.nexteck.uk/";
         } elseif ($type === 'survey_confirmation') {
             $subject = "Site Survey Confirmation – Lux Glazing UK";
             $body = "Dear {$recipientName},\n\n" .

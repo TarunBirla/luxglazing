@@ -142,7 +142,7 @@ Respond strictly in JSON format with keys:
                "Kind regards,\n\n" .
                "Commercial Partnerships Team\n" .
                "Lux Glazing UK\n" .
-               "https://luxglazing.co.uk/ | +44 20 7946 0991";
+               "https://luxglazing.nexteck.uk/ | +44 20 7946 0991";
     }
 
     /**

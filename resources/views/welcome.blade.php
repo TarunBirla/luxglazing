@@ -666,9 +666,8 @@
                 <span>LUX GLAZING UK</span>
             </div>
             <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                <a href="{{ route('setup.database') }}" style="color: var(--lux-gold); text-decoration: none;"><i class="fa-solid fa-database"></i> Database Migration URL</a>
-                <a href="{{ route('login') }}" style="color: var(--lux-muted); text-decoration: none;"><i class="fa-solid fa-lock"></i> CRM Login</a>
-                <a href="https://luxglazing.co.uk/" target="_blank" style="color: var(--lux-muted); text-decoration: none;"><i class="fa-solid fa-globe"></i> Live Website</a>
+                <a href="{{ route('login') }}" style="color: var(--lux-muted); text-decoration: none;"><i class="fa-solid fa-lock"></i>  Login</a>
+                <a href="https://luxglazing.nexteck.uk/" target="_blank" style="color: var(--lux-muted); text-decoration: none;"><i class="fa-solid fa-globe"></i> Live Website</a>
             </div>
         </div>
         <div style="text-align: center; font-size: 12px;">

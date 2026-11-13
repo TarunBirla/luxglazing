@@ -328,22 +328,7 @@
             </button>
         </form>
 
-        <div class="creds-container">
-            <div class="creds-title"><i class="fa-solid fa-key" style="margin-right: 4px;"></i> Quick-Fill Authorized Access</div>
-            <div class="creds-grid">
-                <div class="creds-pill" onclick="fillCreds('admin@luxglazing.co.uk', 'LuxGlazing@2026')">
-                    <div class="creds-role"><i class="fa-solid fa-crown"></i> Super Admin</div>
-                    <div class="creds-user">admin@luxglazing.co.uk</div>
-                    <div class="creds-pass">Pass: LuxGlazing@2026</div>
-                </div>
-
-                <div class="creds-pill" onclick="fillCreds('oliver@luxglazing.co.uk', 'LuxGlazing@2026')">
-                    <div class="creds-role"><i class="fa-solid fa-user-tie"></i> Sales Agent</div>
-                    <div class="creds-user">oliver@luxglazing.co.uk</div>
-                    <div class="creds-pass">Pass: LuxGlazing@2026</div>
-                </div>
-            </div>
-        </div>
+       
 
         <div class="back-link">
             <a href="{{ url('/') }}"><i class="fa-solid fa-arrow-left"></i> Return to Public Website</a>

@@ -2,7 +2,7 @@
 ## Strategic Growth Proposal: AI Lead Generation, Enterprise CRM & UK Market Domination
 **Project:** AI-Powered Digital Marketing, B2B Prospecting & Custom CRM Automation  
 **Target Market:** United Kingdom (High-End Residential & Commercial Trade)  
-**Client Website:** https://luxglazing.co.uk/  
+**Client Website:** https://luxglazing.nexteck.uk/  
 **Prepared By:** Digital Transformation, AI Automation & Growth Architecture Practice  
 **Date:** November 2026 | Confidential Executive Proposal  
 

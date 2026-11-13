@@ -303,7 +303,7 @@ class DatabaseSeeder extends Seeder
 
         // 7. System Settings
         SystemSetting::set('company_name', 'Lux Glazing UK', 'general');
-        SystemSetting::set('website_url', 'https://luxglazing.co.uk/', 'general');
+        SystemSetting::set('website_url', 'https://luxglazing.nexteck.uk/', 'general');
         SystemSetting::set('support_email', 'info@luxglazing.co.uk', 'general');
         SystemSetting::set('phone_number', '+44 20 7946 0991', 'general');
         SystemSetting::set('openai_model', 'gpt-4o', 'ai');

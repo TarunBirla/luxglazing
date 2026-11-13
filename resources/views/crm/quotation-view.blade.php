@@ -208,7 +208,7 @@
                 <div class="brand-sub">Architectural Aluminium & Bespoke Glazing Specialists</div>
                 <div style="font-size: 12px; color: #6B7280; margin-top: 8px;">
                     Registered UK Office: 45 Curzon Street, Mayfair, London W1J 7UZ<br>
-                    Tel: +44 20 7946 0991 | Web: https://luxglazing.co.uk/<br>
+                    Tel: +44 20 7946 0991 | Web: https://luxglazing.nexteck.uk/<br>
                     FENSA Registered Installer No. 38492 | VAT Reg: GB 429 8812 04
                 </div>
             </div>

@@ -153,7 +153,7 @@ class LeadController extends Controller
                         <p style='margin-bottom: 0;'>Warm regards,<br>
                         <strong style='color: #E5D2A5;'>The Technical Survey Team</strong><br>
                         Lux Glazing UK<br>
-                        <a href='https://luxglazing.co.uk/' style='color: #E5D2A5;'>https://luxglazing.co.uk/</a> | Tel: +44 20 7946 0991</p>
+                        <a href='https://luxglazing.nexteck.uk/' style='color: #E5D2A5;'>https://luxglazing.nexteck.uk/</a> | Tel: +44 20 7946 0991</p>
                     </div>
                 </div>";
 
