@@ -92,7 +92,12 @@ class DatabaseSetupController extends Controller
             }
 
             // Verify created tables
-            $tables = ['users', 'leads', 'b2b_prospects', 'quotations', 'quotation_items', 'email_campaigns', 'tasks_and_reminders', 'seo_keywords', 'marketing_metrics', 'system_settings'];
+            $tables = [
+                'users', 'leads', 'b2b_prospects', 'quotations', 'quotation_items', 
+                'email_campaigns', 'tasks_and_reminders', 'seo_keywords', 'marketing_metrics', 'system_settings',
+                'marketing_contacts', 'marketing_campaigns', 'marketing_emails', 'marketing_templates', 
+                'marketing_email_events', 'marketing_suppressions', 'marketing_consent_logs'
+            ];
             $readyTables = [];
             foreach ($tables as $t) {
                 if (Schema::hasTable($t)) {

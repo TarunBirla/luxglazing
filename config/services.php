@@ -8,9 +8,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | This file is for storing the credentials for third party services such
-    | as Mailgun, Postmark, AWS and more. This file provides the de facto
-    | location for this type of information, allowing packages to have
-    | a conventional file to locate the various service credentials.
+    | as Mailgun, Postmark, AWS, OpenAI and more.
     |
     */
 
@@ -28,7 +26,16 @@ return [
     'ses' => [
         'key' => env('AWS_ACCESS_KEY_ID'),
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
-        'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
+        'region' => env('AWS_DEFAULT_REGION', 'ap-south-1'),
+        'configuration_set' => env('AWS_SES_CONFIGURATION_SET', 'marketing-tracking'),
+        'sending_domain' => env('MAIL_SENDING_DOMAIN', 'marketing.nimadtech.in'),
+        'rate_per_second' => (int) env('AWS_SES_RATE_PER_SECOND', 14),
+        'daily_quota' => (int) env('AWS_SES_DAILY_QUOTA', 50000),
+    ],
+
+    'openai' => [
+        'key' => env('OPENAI_API_KEY'),
+        'model' => env('OPENAI_MODEL', 'gpt-4o'),
     ],
 
 ];

@@ -542,6 +542,11 @@
             <div class="nav-item" onclick="switchTab('quotations')"><i class="fa-solid fa-file-invoice-dollar"></i> Quotations (20% VAT)</div>
 
             <div class="nav-category"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Growth Suite</div>
+            <a href="{{ route('marketing.dashboard') }}" class="nav-item" style="background: rgba(229, 210, 165, 0.08); border: 1px dashed rgba(229, 210, 165, 0.35); text-decoration: none; color: #FFFFFF;">
+                <i class="fa-solid fa-paper-plane" style="color: var(--lux-gold);"></i> 
+                <span>AI Email Manager (SES)</span>
+                <span style="margin-left: auto; font-size: 9px; background: #E5D2A5; color: #0B0E14; padding: 1px 6px; border-radius: 4px; font-weight: 700;">NEW</span>
+            </a>
             <div class="nav-item" onclick="switchTab('b2b')"><i class="fa-solid fa-building"></i> B2B Architects Hub</div>
             <div class="nav-item" onclick="switchTab('ai-emails')"><i class="fa-solid fa-envelope-open-text"></i> AI Email Generator</div>
             <div class="nav-item" onclick="switchTab('campaigns')"><i class="fa-solid fa-bullhorn"></i> Outreach Campaigns</div>
@@ -586,6 +591,10 @@
                 <div class="topbar-title">Executive CRM Control Panel</div>
             </div>
             <div class="topbar-actions">
+                <a href="{{ route('marketing.dashboard') }}" class="btn btn-dark" style="border-color: rgba(229, 210, 165, 0.4); color: var(--lux-gold);" title="AI Marketing Email Manager">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>AI Email Manager</span>
+                </a>
                 <a href="{{ url('/') }}" target="_blank" class="btn btn-dark" title="Open Public Site">
                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
                     <span style="display: inline-block;">Website</span>

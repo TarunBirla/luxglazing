@@ -14,6 +14,10 @@ use App\Models\TaskReminder;
 use App\Models\SeoKeyword;
 use App\Models\MarketingMetric;
 use App\Models\SystemSetting;
+use App\Models\MarketingContact;
+use App\Models\MarketingTemplate;
+use App\Models\MarketingCampaign;
+use App\Models\MarketingConsentLog;
 
 class DatabaseSeeder extends Seeder
 {
@@ -60,7 +64,7 @@ class DatabaseSeeder extends Seeder
                 'source' => 'Website Chatbot',
                 'ai_score' => 92,
                 'ai_classification' => 'Hot',
-                'ai_qualification_summary' => 'High-net-worth homeowner in Chelsea looking for 6-meter ultra-slimline aluminium bifolds in RAL 7016 with solar-control double glazing. Immediate decision maker with drawings ready.',
+                'ai_qualification_summary' => 'High-net-worth homeowner in Chelsea looking for 6-meter ultra-slimline aluminium bifolds in RAL 7016 with solar-control double glazing.',
                 'ai_recommended_action' => 'Priority site survey scheduled. Recommend Cortizo or Schüco profiles with integrated solar control glazing.',
                 'estimated_value' => 18500.00,
                 'assigned_to' => $salesRep->id,
@@ -92,54 +96,6 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        $lead3 = Lead::updateOrCreate(
-            ['phone' => '+44 7934 567890'],
-            [
-                'name' => 'Marcus Vance',
-                'email' => 'marcus@vancearchitecture.co.uk',
-                'postcode' => 'N1 2UQ',
-                'address' => '78 Upper Street, Islington, London',
-                'service_type' => 'Heritage/Steel Doors',
-                'project_type' => 'Residential',
-                'property_type' => 'Georgian Townhouse',
-                'estimated_budget' => '£6,000 - £15,000',
-                'timeframe' => '1-3 months',
-                'stage' => 'Qualified',
-                'source' => 'Instagram',
-                'ai_score' => 74,
-                'ai_classification' => 'Warm',
-                'ai_qualification_summary' => 'Internal Crittall-style steel-look screening and French doors for an open-plan kitchen zoning in Islington.',
-                'ai_recommended_action' => 'Offer digital quote breakdown with RAL 9005 matte black heritage glazing bars.',
-                'estimated_value' => 9800.00,
-                'assigned_to' => $salesRep->id,
-                'notes' => 'Wants acoustic glass option for sound insulation between dining and home office.',
-            ]
-        );
-
-        $lead4 = Lead::updateOrCreate(
-            ['phone' => '+44 7456 789012'],
-            [
-                'name' => 'David Thorne (Apex Commercial)',
-                'email' => 'dthorne@apexbuildgroup.co.uk',
-                'postcode' => 'M1 4ET',
-                'address' => 'Piccadilly Plaza, Manchester City Centre',
-                'service_type' => 'Commercial Glazing',
-                'project_type' => 'Commercial',
-                'property_type' => 'Office HQ & Retail Ground Floor',
-                'estimated_budget' => '£50,000+',
-                'timeframe' => 'Immediate (Within 4 weeks)',
-                'stage' => 'Contacted',
-                'source' => 'Organic SEO',
-                'ai_score' => 95,
-                'ai_classification' => 'Hot',
-                'ai_qualification_summary' => 'Commercial contractor tendering for ground-floor retail curtain walling and automatic commercial entrance doors. Full tender pack available.',
-                'ai_recommended_action' => 'Request architectural DWG/PDF drawings and prepare trade pricing matrix.',
-                'estimated_value' => 64500.00,
-                'assigned_to' => $admin->id,
-                'notes' => 'Commercial compliance with UK Building Regulations Part L & Part Q required.',
-            ]
-        );
-
         // 3. Realistic UK B2B Trade Prospects
         B2bProspect::updateOrCreate(
             ['company_name' => 'Octagon Bespoke Homes'],
@@ -155,40 +111,6 @@ class DatabaseSeeder extends Seeder
                 'status' => 'Researched',
                 'ai_research_notes' => 'Premier luxury homebuilder in the Home Counties building £3m-£10m mansions. Frequently install oversized slimline sliding doors and structural roof lanterns.',
                 'ai_personalized_pitch' => 'Highlight Lux Glazing trade discounts, dedicated site surveys, and turnkey installation guarantees for prime Surrey & Berkshire developments.',
-            ]
-        );
-
-        B2bProspect::updateOrCreate(
-            ['company_name' => 'Studio Indigo Architects'],
-            [
-                'category' => 'Architect',
-                'contact_person' => 'Elena Rostova',
-                'job_title' => 'Senior Associate / Lead Specifier',
-                'email' => 'specifications@studioindigo.co.uk',
-                'phone' => '+44 20 7349 8080',
-                'website' => 'https://www.studioindigo.co.uk',
-                'city' => 'Chelsea, London',
-                'postcode' => 'SW10 0AJ',
-                'status' => 'Identified',
-                'ai_research_notes' => 'Award-winning architecture and interior design practice specializing in luxury London townhouses, penthouses and yachts.',
-                'ai_personalized_pitch' => 'Introduce Lux Glazing Cortizo minimalist sliding doors (20mm interlock) and Heritage steel-look acoustic screens with NBS specification support.',
-            ]
-        );
-
-        B2bProspect::updateOrCreate(
-            ['company_name' => 'Berkeley Group (St Edward)'],
-            [
-                'category' => 'Property Developer',
-                'contact_person' => 'Mark Atherton',
-                'job_title' => 'Head of Supply Chain',
-                'email' => 'm.atherton@berkeleygroup.co.uk',
-                'phone' => '+44 20 7720 2600',
-                'website' => 'https://www.berkeleygroup.co.uk',
-                'city' => 'London',
-                'postcode' => 'SW8 5NN',
-                'status' => 'Trade Partner',
-                'ai_research_notes' => 'FTSE 100 residential developer delivering landmark regenerations across London and the South of England.',
-                'ai_personalized_pitch' => 'Long-term commercial framework for residential aluminium window suites and PAS 24 certified composite & entrance systems.',
             ]
         );
 
@@ -214,10 +136,7 @@ class DatabaseSeeder extends Seeder
         );
 
         QuotationItem::updateOrCreate(
-            [
-                'quotation_id' => $quote->id,
-                'product_name' => 'Cortizo / Schüco 5-Panel Aluminium Bifold Door Suite',
-            ],
+            ['quotation_id' => $quote->id, 'product_name' => 'Cortizo / Schüco 5-Panel Aluminium Bifold Door Suite'],
             [
                 'description' => 'Ultra-slim sightlines (120mm stiles), low thermal U-value (1.3 W/m²K), multi-point high security locking system.',
                 'width_mm' => 5200,
@@ -230,33 +149,11 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        QuotationItem::updateOrCreate(
-            [
-                'quotation_id' => $quote->id,
-                'product_name' => 'Full FENSA Site Survey, Structural Preparation & Expert Installation',
-            ],
-            [
-                'description' => 'Laser precision site survey, removal of existing doors, disposal, laser level installation with weather-sealed flush threshold.',
-                'width_mm' => 0,
-                'height_mm' => 0,
-                'color_finish' => 'Matching RAL 7016',
-                'glass_specification' => 'Installation & Certification',
-                'quantity' => 1,
-                'unit_price' => 2566.67,
-                'line_total' => 2566.67,
-            ]
-        );
-
         // 5. UK SEO Keywords
         $keywords = [
             ['keyword' => 'aluminium bifold doors london', 'target_page' => '/bifold-doors', 'intent' => 'Transactional', 'priority' => 'High', 'current_position' => 4, 'target_position' => 1, 'search_volume_est' => 2400],
             ['keyword' => 'slimline sliding doors surrey', 'target_page' => '/sliding-doors', 'intent' => 'Commercial', 'priority' => 'High', 'current_position' => 6, 'target_position' => 2, 'search_volume_est' => 1600],
-            ['keyword' => 'architectural glazing contractors uk', 'target_page' => '/commercial-glazing', 'intent' => 'Commercial', 'priority' => 'High', 'current_position' => 8, 'target_position' => 3, 'search_volume_est' => 1100],
-            ['keyword' => 'heritage steel look doors london', 'target_page' => '/heritage-doors', 'intent' => 'Transactional', 'priority' => 'High', 'current_position' => 3, 'target_position' => 1, 'search_volume_est' => 1900],
-            ['keyword' => 'upvc flush sash windows price', 'target_page' => '/upvc-windows', 'intent' => 'Commercial', 'priority' => 'Medium', 'current_position' => 11, 'target_position' => 4, 'search_volume_est' => 3200],
-            ['keyword' => 'composite front door installers near me', 'target_page' => '/composite-doors', 'intent' => 'Transactional', 'priority' => 'Medium', 'current_position' => 7, 'target_position' => 2, 'search_volume_est' => 4500],
         ];
-
         foreach ($keywords as $kw) {
             SeoKeyword::updateOrCreate(['keyword' => $kw['keyword']], $kw);
         }
@@ -275,40 +172,130 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        MarketingMetric::updateOrCreate(
-            ['channel' => 'Meta (Instagram & Facebook Ads)'],
-            [
-                'period_label' => 'Current Month',
-                'spend_gbp' => 950.00,
-                'impressions' => 58000,
-                'clicks' => 1240,
-                'leads_generated' => 28,
-                'cost_per_lead_gbp' => 33.93,
-                'conversions_won' => 4,
-            ]
-        );
-
-        MarketingMetric::updateOrCreate(
-            ['channel' => 'Organic SEO & Local Google Maps'],
-            [
-                'period_label' => 'Current Month',
-                'spend_gbp' => 800.00,
-                'impressions' => 94000,
-                'clicks' => 3120,
-                'leads_generated' => 56,
-                'cost_per_lead_gbp' => 14.28,
-                'conversions_won' => 11,
-            ]
-        );
-
         // 7. System Settings
         SystemSetting::set('company_name', 'Lux Glazing UK', 'general');
         SystemSetting::set('website_url', 'https://luxglazing.nexteck.uk/', 'general');
         SystemSetting::set('support_email', 'info@luxglazing.co.uk', 'general');
         SystemSetting::set('phone_number', '+44 20 7946 0991', 'general');
         SystemSetting::set('openai_model', 'gpt-4o', 'ai');
-        SystemSetting::set('ai_lead_qualification_enabled', '1', 'ai');
+        SystemSetting::set('aws_ses_region', 'ap-south-1', 'marketing');
+        SystemSetting::set('aws_ses_configuration_set', 'marketing-tracking', 'marketing');
+        SystemSetting::set('mail_sending_domain', 'marketing.nimadtech.in', 'marketing');
         SystemSetting::set('currency_symbol', '£', 'general');
         SystemSetting::set('vat_rate', '20', 'financial');
+
+        // 8. AI Marketing Email Manager - Sample Verified Contacts
+        $contact1 = MarketingContact::updateOrCreate(
+            ['email' => 'oliver.henderson@henderson-architects.co.uk'],
+            [
+                'name' => 'Oliver Henderson',
+                'company' => 'Henderson Architects RIBA',
+                'website' => 'https://henderson-architects.co.uk',
+                'phone' => '+44 20 7946 0111',
+                'business_type' => 'Architect',
+                'verification_status' => 'verified',
+                'consent_status' => true,
+                'consent_source' => 'RIBA Trade Directory Opt-in',
+                'consent_date' => now()->subDays(10),
+                'subscription_status' => 'subscribed',
+            ]
+        );
+
+        $contact2 = MarketingContact::updateOrCreate(
+            ['email' => 'sarah.jenkins@berkeleyhomes.co.uk'],
+            [
+                'name' => 'Sarah Jenkins',
+                'company' => 'Berkeley Homes London',
+                'website' => 'https://berkeleygroup.co.uk',
+                'phone' => '+44 20 7946 0222',
+                'business_type' => 'Property Developer',
+                'verification_status' => 'verified',
+                'consent_status' => true,
+                'consent_source' => 'B2B Trade Application',
+                'consent_date' => now()->subDays(8),
+                'subscription_status' => 'subscribed',
+            ]
+        );
+
+        $contact3 = MarketingContact::updateOrCreate(
+            ['email' => 'marcus.vance@vance-construction.co.uk'],
+            [
+                'name' => 'Marcus Vance',
+                'company' => 'Vance Construction & Developments',
+                'website' => 'https://vanceconstruction.co.uk',
+                'phone' => '+44 1483 500600',
+                'business_type' => 'Builder',
+                'verification_status' => 'verified',
+                'consent_status' => true,
+                'consent_source' => 'Direct Consultation',
+                'consent_date' => now()->subDays(5),
+                'subscription_status' => 'subscribed',
+            ]
+        );
+
+        // 9. Reusable Email Templates
+        $tpl1 = MarketingTemplate::updateOrCreate(
+            ['name' => 'Cortizo Ultra-Slim Sliding Doors Showcase'],
+            [
+                'subject' => 'Architectural Specification: Cortizo Cor Vision Plus – {{company}}',
+                'category' => 'Architectural Showcase',
+                'body_html' => '<p>Dear {{name}},</p>
+<p>I hope you are having a productive week at {{company}}.</p>
+<p>As specialists in high-specification architectural glazing across the UK, we would welcome the opportunity to introduce <strong>Cortizo Cor Vision Plus</strong> for your upcoming residential schemes:</p>
+<ul>
+    <li><strong>20mm Minimal Sightlines:</strong> Floor-to-ceiling glass integration with flush floor transitions.</li>
+    <li><strong>Thermal Performance:</strong> Low U-value of 1.1 W/m²K, exceeding UK Part L standards.</li>
+    <li><strong>Turnkey FENSA Installation:</strong> In-house certified surveyors and structural glass engineers.</li>
+</ul>
+<p>Would you like us to share our 2026 Architectural Specifiers Guide and DWG CAD blocks?</p>
+<p>Kind regards,<br><strong>Commercial Specifications Team</strong><br>Lux Glazing UK</p>',
+                'variables' => ['name', 'company', 'email', 'website', 'unsubscribe_url'],
+                'is_active' => true,
+            ]
+        );
+
+        $tpl2 = MarketingTemplate::updateOrCreate(
+            ['name' => 'Heritage Steel-Look Acoustic Screens'],
+            [
+                'subject' => 'Heritage Steel-Look Glazing for London Schemes – {{company}}',
+                'category' => 'Heritage Collection',
+                'body_html' => '<p>Dear {{name}},</p>
+<p>We are delighted to present Lux Glazing\'s <strong>Heritage Steel-Look Collection</strong>, specifically engineered for luxury home renovations and conservation schemes.</p>
+<p>Features slender aluminium profiles mimicking historic Crittall aesthetic with modern thermal break and acoustic insulation.</p>
+<p>Let us know if you have an active scheme where we can assist with preliminary estimates.</p>
+<p>Warm regards,<br>Lux Glazing UK</p>',
+                'variables' => ['name', 'company', 'email', 'website', 'unsubscribe_url'],
+                'is_active' => true,
+            ]
+        );
+
+        // 10. Sample Campaign
+        MarketingCampaign::updateOrCreate(
+            ['name' => 'Q4 London & Surrey Architects Outreach'],
+            [
+                'description' => 'Targeted campaign presenting Cortizo minimalist sliding doors to leading RIBA architectural practices.',
+                'purpose' => 'Promote Cortizo Cor Vision Plus and Schüco bifold suites with trade discounts.',
+                'subject' => 'Bespoke Architectural Glazing Collaboration – Lux Glazing UK',
+                'content' => 'Presenting Cortizo Cor Vision Plus (20mm sightlines) and turnkey FENSA installation for luxury residential extensions.',
+                'template_id' => $tpl1->id,
+                'sending_mode' => 'both',
+                'status' => 'completed',
+                'started_at' => now()->subDays(3),
+                'completed_at' => now()->subDays(2),
+                'total_contacts' => 3,
+                'emails_generated' => 3,
+                'emails_queued' => 3,
+                'emails_sent' => 3,
+                'emails_delivered' => 3,
+                'emails_opened' => 2,
+                'emails_clicked' => 1,
+                'emails_bounced' => 0,
+                'emails_complained' => 0,
+                'openai_tokens_used' => 650,
+                'openai_cost_usd' => 0.0032,
+                'sender_email' => 'marketing@marketing.nimadtech.in',
+                'sender_name' => 'Lux Glazing Architectural Team',
+            ]
+        );
     }
 }
