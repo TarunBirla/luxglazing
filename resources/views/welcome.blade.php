@@ -453,16 +453,14 @@
         <nav class="nav-links">
             <a href="#products" class="nav-link"><i class="fa-solid fa-layer-group"></i> Solutions</a>
             <a href="#estimator" class="nav-link"><i class="fa-solid fa-calculator"></i> Price Calculator</a>
-            <a href="{{ route('setup.database') }}" class="nav-link" style="color: var(--lux-gold); font-size: 11px;">
-                <i class="fa-solid fa-database"></i> DB SETUP ROUTE
-            </a>
+           
             @auth
                 <a href="{{ route('crm.dashboard') }}" class="btn btn-outline">
-                    <i class="fa-solid fa-gauge-high"></i> CRM Dashboard
+                    <i class="fa-solid fa-gauge-high"></i>  Dashboard
                 </a>
             @else
                 <a href="{{ route('login') }}" class="btn btn-outline">
-                    <i class="fa-solid fa-lock"></i> CRM Login
+                    <i class="fa-solid fa-lock"></i>  Login
                 </a>
             @endauth
             <a href="#estimator" class="btn btn-gold">
