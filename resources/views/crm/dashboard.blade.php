@@ -4,19 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lux Glazing UK – Enterprise CRM & AI Lead Engine</title>
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         :root {
+            --lux-gold: #E5D2A5;
+            --lux-gold-hover: #d8c28f;
+            --lux-gold-light: #F7EEDB;
             --lux-black: #0B0E14;
             --lux-dark: #121824;
             --lux-card: #182030;
             --lux-card-hover: #1f2a3f;
-            --lux-border: rgba(212, 175, 55, 0.22);
+            --lux-border: rgba(229, 210, 165, 0.25);
             --lux-border-light: rgba(255, 255, 255, 0.08);
-            --lux-gold: #D4AF37;
-            --lux-gold-light: #F3E5AB;
             --lux-text: #F3F4F6;
             --lux-muted: #9CA3AF;
             --lux-success: #10B981;
@@ -32,43 +36,49 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             min-height: 100vh;
             display: flex;
+            overflow-x: hidden;
         }
 
-        /* Sidebar */
+        /* Sidebar - Fully Adaptive for 14" Laptops & Screens */
         .sidebar {
-            width: 270px;
+            width: 260px;
             background: var(--lux-dark);
             border-right: 1px solid var(--lux-border);
             display: flex;
             flex-direction: column;
             position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
+            top: 0; bottom: 0; left: 0;
             z-index: 50;
+            transition: transform 0.3s ease, width 0.3s ease;
         }
         .sidebar-brand {
-            padding: 24px 20px;
+            padding: 22px 18px;
             border-bottom: 1px solid var(--lux-border);
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
         .brand-logo {
             font-family: 'Cinzel', serif;
-            font-size: 20px;
+            font-size: 19px;
             font-weight: 700;
             letter-spacing: 2px;
             color: var(--lux-gold);
             text-transform: uppercase;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         .brand-tag {
-            font-size: 10px;
+            font-size: 9px;
             letter-spacing: 1.5px;
             color: var(--lux-muted);
             text-transform: uppercase;
-            margin-top: 4px;
+            margin-top: 3px;
         }
         .sidebar-nav {
-            padding: 16px 12px;
+            padding: 14px 10px;
             flex: 1;
             overflow-y: auto;
         }
@@ -77,39 +87,91 @@
             text-transform: uppercase;
             letter-spacing: 1.2px;
             color: var(--lux-gold);
-            padding: 12px 10px 6px;
+            padding: 10px 10px 4px;
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
         .nav-item {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 10px 14px;
+            padding: 9px 12px;
             font-size: 13px;
             color: var(--lux-muted);
             text-decoration: none;
             border-radius: 8px;
             transition: all 0.2s ease;
             cursor: pointer;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
+        }
+        .nav-item i {
+            width: 18px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--lux-gold);
         }
         .nav-item:hover, .nav-item.active {
             color: #FFFFFF;
-            background: rgba(212, 175, 55, 0.12);
-            border: 1px solid rgba(212, 175, 55, 0.25);
+            background: rgba(229, 210, 165, 0.12);
+            border: 1px solid rgba(229, 210, 165, 0.3);
         }
         .nav-item.active {
             color: var(--lux-gold);
             font-weight: 600;
         }
 
-        /* Main Content */
+        /* Sidebar Profile Card at Bottom */
+        .sidebar-user-box {
+            padding: 14px 16px;
+            border-top: 1px solid var(--lux-border-light);
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .user-avatar-badge {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--lux-gold);
+            color: #0B0E14;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .user-info-text {
+            flex: 1;
+            margin-left: 10px;
+            overflow: hidden;
+        }
+        .user-name-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #FFFFFF;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .user-role-label {
+            font-size: 10px;
+            color: var(--lux-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Main Content Wrapper */
         .main-wrapper {
-            margin-left: 270px;
+            margin-left: 260px;
             flex: 1;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            width: calc(100% - 260px);
+            transition: margin-left 0.3s ease, width 0.3s ease;
         }
 
         /* Top Header */
@@ -120,26 +182,47 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 32px;
+            padding: 0 28px;
             position: sticky;
             top: 0;
             z-index: 40;
         }
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .sidebar-toggle-btn {
+            background: transparent;
+            border: 1px solid var(--lux-border-light);
+            color: var(--lux-gold);
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+        .sidebar-toggle-btn:hover {
+            border-color: var(--lux-gold);
+        }
         .topbar-title {
             font-family: 'Cinzel', serif;
-            font-size: 18px;
+            font-size: 17px;
             color: #FFFFFF;
             letter-spacing: 1px;
         }
         .topbar-actions {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 12px;
         }
 
-        /* Badges & Buttons */
+        /* Buttons with #E5D2A5 */
         .btn {
-            padding: 9px 18px;
+            padding: 8px 16px;
             border-radius: 6px;
             font-size: 13px;
             font-weight: 600;
@@ -149,44 +232,59 @@
             align-items: center;
             gap: 8px;
             border: none;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
         }
         .btn-gold {
-            background: linear-gradient(135deg, #D4AF37 0%, #B89025 100%);
-            color: #000;
-            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.25);
+            background: var(--lux-gold);
+            color: #0B0E14;
+            box-shadow: 0 4px 12px rgba(229, 210, 165, 0.25);
         }
-        .btn-gold:hover { opacity: 0.95; transform: translateY(-1px); }
+        .btn-gold:hover {
+            background: var(--lux-gold-hover);
+            transform: translateY(-1px);
+        }
         .btn-dark {
             background: var(--lux-card);
             color: var(--lux-text);
             border: 1px solid var(--lux-border-light);
         }
-        .btn-dark:hover { border-color: var(--lux-gold); color: var(--lux-gold); }
+        .btn-dark:hover {
+            border-color: var(--lux-gold);
+            color: var(--lux-gold);
+        }
+        .btn-danger {
+            background: rgba(239, 68, 68, 0.15);
+            color: #F87171;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        .btn-danger:hover {
+            background: rgba(239, 68, 68, 0.25);
+        }
 
         .content-body {
-            padding: 32px;
+            padding: 24px 28px;
             flex: 1;
         }
 
-        /* Metric Cards Grid */
+        /* Metric Cards Grid - Fully Responsive */
         .metrics-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin-bottom: 26px;
         }
         .metric-card {
             background: var(--lux-card);
             border: 1px solid var(--lux-border-light);
             border-radius: 12px;
-            padding: 22px;
+            padding: 20px;
             position: relative;
             overflow: hidden;
-            transition: border-color 0.2s;
+            transition: all 0.2s;
         }
         .metric-card:hover {
             border-color: var(--lux-border);
+            transform: translateY(-2px);
         }
         .metric-card::before {
             content: '';
@@ -194,68 +292,96 @@
             top: 0; left: 0; width: 4px; height: 100%;
             background: var(--lux-gold);
         }
-        .metric-label {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--lux-muted);
+        .metric-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             margin-bottom: 8px;
         }
+        .metric-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--lux-muted);
+            font-weight: 600;
+        }
+        .metric-icon {
+            color: var(--lux-gold);
+            font-size: 16px;
+        }
         .metric-val {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 700;
             color: #FFFFFF;
             margin-bottom: 4px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
         .metric-sub {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--lux-gold);
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
 
-        /* Sections & Tabs */
+        /* Section Layouts */
         .tab-content { display: none; }
-        .tab-content.active { display: block; }
+        .tab-content.active { display: block; animation: fadeIn 0.2s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
         .section-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+            gap: 12px;
         }
         .section-title {
             font-family: 'Cinzel', serif;
-            font-size: 20px;
+            font-size: 18px;
             color: var(--lux-gold-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        /* Tables */
+        /* Responsive Data Tables */
         .data-card {
             background: var(--lux-card);
             border: 1px solid var(--lux-border-light);
             border-radius: 12px;
             overflow: hidden;
-            margin-bottom: 30px;
+            margin-bottom: 26px;
+        }
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             font-size: 13px;
+            min-width: 680px;
         }
         th {
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.45);
             color: var(--lux-gold);
             text-transform: uppercase;
             letter-spacing: 0.8px;
             font-size: 11px;
-            font-weight: 600;
+            font-weight: 700;
             text-align: left;
-            padding: 14px 18px;
+            padding: 13px 16px;
             border-bottom: 1px solid var(--lux-border-light);
+            white-space: nowrap;
         }
         td {
-            padding: 14px 18px;
+            padding: 13px 16px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             color: var(--lux-text);
+            vertical-align: middle;
         }
         tr:hover td {
             background: var(--lux-card-hover);
@@ -263,48 +389,55 @@
 
         /* Badges */
         .badge {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
             padding: 4px 10px;
             border-radius: 9999px;
             font-size: 11px;
             font-weight: 600;
+            white-space: nowrap;
         }
         .badge-hot { background: rgba(239, 68, 68, 0.2); color: #FCA5A5; border: 1px solid rgba(239, 68, 68, 0.4); }
         .badge-warm { background: rgba(245, 158, 11, 0.2); color: #FCD34D; border: 1px solid rgba(245, 158, 11, 0.4); }
         .badge-cold { background: rgba(156, 163, 175, 0.2); color: #D1D5DB; border: 1px solid rgba(156, 163, 175, 0.4); }
-        .badge-stage { background: rgba(212, 175, 55, 0.15); color: var(--lux-gold-light); border: 1px solid var(--lux-border); }
+        .badge-stage { background: rgba(229, 210, 165, 0.15); color: var(--lux-gold); border: 1px solid var(--lux-border); }
 
         /* Kanban Board */
         .kanban-grid {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 16px;
+            grid-template-columns: repeat(6, minmax(210px, 1fr));
+            gap: 14px;
             overflow-x: auto;
             padding-bottom: 16px;
+            -webkit-overflow-scrolling: touch;
         }
         .kanban-col {
-            background: rgba(18, 24, 36, 0.8);
+            background: rgba(18, 24, 36, 0.85);
             border: 1px solid var(--lux-border-light);
             border-radius: 10px;
-            padding: 14px;
+            padding: 12px;
             min-height: 480px;
         }
         .kanban-col-header {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.8px;
             color: var(--lux-gold);
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--lux-border-light);
         }
         .kanban-item {
             background: var(--lux-card);
             border: 1px solid var(--lux-border-light);
             border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 12px;
+            padding: 11px;
+            margin-bottom: 10px;
             font-size: 12px;
             transition: all 0.2s;
         }
@@ -315,7 +448,7 @@
         .kanban-lead-name { font-weight: 600; color: #FFF; margin-bottom: 4px; }
         .kanban-lead-meta { font-size: 11px; color: var(--lux-muted); margin-bottom: 8px; }
 
-        /* Modal Dialog */
+        /* Modal Dialogs */
         .modal {
             display: none;
             position: fixed;
@@ -325,85 +458,161 @@
             z-index: 100;
             align-items: center;
             justify-content: center;
+            padding: 16px;
         }
         .modal.active { display: flex; }
         .modal-content {
             background: var(--lux-dark);
             border: 1px solid var(--lux-border);
             border-radius: 14px;
-            padding: 30px;
-            max-width: 600px;
-            width: 90%;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            padding: 28px;
+            max-width: 580px;
+            width: 100%;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.85);
+            max-height: 90vh;
+            overflow-y: auto;
         }
-        .form-group { margin-bottom: 16px; }
-        .form-label { display: block; font-size: 12px; color: var(--lux-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .form-group { margin-bottom: 16px; position: relative; }
+        .form-label { display: block; font-size: 11px; color: var(--lux-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.6px; font-weight: 600; }
         .form-control {
             width: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.45);
             border: 1px solid var(--lux-border-light);
             color: #FFF;
             padding: 10px 14px;
             border-radius: 6px;
             font-size: 13px;
+            transition: border-color 0.2s;
         }
         .form-control:focus { outline: none; border-color: var(--lux-gold); }
 
         .alert-box {
-            padding: 14px 20px;
+            padding: 12px 18px;
             border-radius: 8px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             font-size: 13px;
             background: rgba(16, 185, 129, 0.15);
             border: 1px solid rgba(16, 185, 129, 0.3);
-            color: #10B981;
+            color: #6EE7B7;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* 14-Inch Laptop & Mobile Responsiveness */
+        @media (max-width: 1200px) {
+            .sidebar { width: 230px; }
+            .main-wrapper { margin-left: 230px; width: calc(100% - 230px); }
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 900px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.mobile-open { transform: translateX(0); }
+            .main-wrapper { margin-left: 0; width: 100%; }
+            .sidebar-toggle-btn { display: flex; }
+            .metrics-grid { grid-template-columns: 1fr; }
+            .topbar { padding: 0 16px; }
+            .content-body { padding: 18px 16px; }
         }
     </style>
 </head>
 <body>
 
     <!-- Sidebar Navigation -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebarNav">
         <div class="sidebar-brand">
-            <div class="brand-logo">LUX GLAZING</div>
-            <div class="brand-tag">AI CRM & LEAD SUITE</div>
+            <div>
+                <a href="{{ url('/') }}" class="brand-logo">
+                    <i class="fa-solid fa-gem" style="color: var(--lux-gold);"></i>
+                    <span>LUX GLAZING</span>
+                </a>
+                <div class="brand-tag">AI CRM & LEAD ENGINE</div>
+            </div>
+            <button class="sidebar-toggle-btn" onclick="toggleSidebar()" style="display: none;" id="closeSidebarBtn">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
         </div>
 
         <nav class="sidebar-nav">
-            <div class="nav-category">Core Operations</div>
-            <div class="nav-item active" onclick="switchTab('dashboard')">📊 Dashboard & KPIs</div>
-            <div class="nav-item" onclick="switchTab('leads')">👥 Lead Management</div>
-            <div class="nav-item" onclick="switchTab('pipeline')">📋 Pipeline Kanban</div>
-            <div class="nav-item" onclick="switchTab('scoring')">⚡ AI Lead Scoring</div>
-            <div class="nav-item" onclick="switchTab('quotations')">📄 Quotations & 20% VAT</div>
+            <div class="nav-category"><i class="fa-solid fa-chart-line"></i> Operations</div>
+            <div class="nav-item active" onclick="switchTab('dashboard')"><i class="fa-solid fa-gauge-high"></i> Dashboard & KPIs</div>
+            <div class="nav-item" onclick="switchTab('leads')"><i class="fa-solid fa-users"></i> Lead Management</div>
+            <div class="nav-item" onclick="switchTab('pipeline')"><i class="fa-solid fa-table-columns"></i> Pipeline Kanban</div>
+            <div class="nav-item" onclick="switchTab('scoring')"><i class="fa-solid fa-brain"></i> AI Lead Scoring</div>
+            <div class="nav-item" onclick="switchTab('quotations')"><i class="fa-solid fa-file-invoice-dollar"></i> Quotations (20% VAT)</div>
 
-            <div class="nav-category">AI Growth Engine</div>
-            <div class="nav-item" onclick="switchTab('b2b')">🏢 B2B Trade Database</div>
-            <div class="nav-item" onclick="switchTab('ai-emails')">✉️ AI Email Generator</div>
-            <div class="nav-item" onclick="switchTab('campaigns')">📣 Email Campaigns</div>
-            <div class="nav-item" onclick="switchTab('tasks')">⏰ Tasks & Surveys</div>
+            <div class="nav-category"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Growth Suite</div>
+            <div class="nav-item" onclick="switchTab('b2b')"><i class="fa-solid fa-building"></i> B2B Architects Hub</div>
+            <div class="nav-item" onclick="switchTab('ai-emails')"><i class="fa-solid fa-envelope-open-text"></i> AI Email Generator</div>
+            <div class="nav-item" onclick="switchTab('campaigns')"><i class="fa-solid fa-bullhorn"></i> Outreach Campaigns</div>
+            <div class="nav-item" onclick="switchTab('tasks')"><i class="fa-solid fa-calendar-check"></i> Tasks & Surveys</div>
 
-            <div class="nav-category">Marketing & ROI</div>
-            <div class="nav-item" onclick="switchTab('seo')">🔍 SEO Performance</div>
-            <div class="nav-item" onclick="switchTab('advertising')">🎯 Google Ads & Meta</div>
-            <div class="nav-item" onclick="switchTab('settings')">⚙️ System & OpenAI</div>
+            <div class="nav-category"><i class="fa-solid fa-magnifying-glass-chart"></i> Growth & Marketing</div>
+            <div class="nav-item" onclick="switchTab('seo')"><i class="fa-solid fa-arrow-trend-up"></i> UK SEO Performance</div>
+            <div class="nav-item" onclick="switchTab('advertising')"><i class="fa-brands fa-google"></i> Google Ads & Meta</div>
+            <div class="nav-item" onclick="switchTab('settings')"><i class="fa-solid fa-sliders"></i> System Settings</div>
         </nav>
+
+        <!-- Current Logged-in User Info & Logout -->
+        <div class="sidebar-user-box">
+            <div class="user-avatar-badge">
+                {{ substr(Auth::user()->name ?? 'Admin', 0, 1) }}
+            </div>
+            <div class="user-info-text">
+                <div class="user-name-label">{{ Auth::user()->name ?? 'Administrator' }}</div>
+                <div class="user-role-label"><i class="fa-solid fa-shield-halved"></i> {{ Auth::user()->role ?? 'super_admin' }}</div>
+            </div>
+            <div style="display: flex; gap: 4px;">
+                <button class="btn btn-dark" style="padding: 6px 8px; font-size: 11px;" onclick="openModal('passwordModal')" title="Change Password">
+                    <i class="fa-solid fa-key" style="color: var(--lux-gold);"></i>
+                </button>
+                <form action="{{ route('logout') }}" method="POST" style="margin: 0;">
+                    @csrf
+                    <button type="submit" class="btn btn-danger" style="padding: 6px 8px; font-size: 11px;" title="Logout">
+                        <i class="fa-solid fa-power-off"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
     </aside>
 
     <!-- Main Content Area -->
     <div class="main-wrapper">
         <header class="topbar">
-            <div class="topbar-title">Lux Glazing UK – Executive Management Control</div>
+            <div class="topbar-left">
+                <button class="sidebar-toggle-btn" onclick="toggleSidebar()" title="Toggle Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="topbar-title">Executive CRM Control Panel</div>
+            </div>
             <div class="topbar-actions">
-                <a href="{{ url('/') }}" target="_blank" class="btn btn-dark">View Public Website ↗</a>
-                <button class="btn btn-gold" onclick="openModal('addLeadModal')">+ Add New Glazing Lead</button>
+                <a href="{{ url('/') }}" target="_blank" class="btn btn-dark" title="Open Public Site">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span style="display: inline-block;">Website</span>
+                </a>
+                <button class="btn btn-gold" onclick="openModal('addLeadModal')">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>New Lead</span>
+                </button>
+                <button class="btn btn-dark" onclick="openModal('passwordModal')" title="Profile & Password">
+                    <i class="fa-solid fa-user-shield" style="color: var(--lux-gold);"></i>
+                    <span>Profile</span>
+                </button>
             </div>
         </header>
 
         <main class="content-body">
             @if(session('success'))
                 <div class="alert-box">
-                    {{ session('success') }}
+                    <i class="fa-solid fa-circle-check" style="font-size: 16px;"></i>
+                    <span>{{ session('success') }}</span>
+                </div>
+            @endif
+
+            @if($errors->any())
+                <div class="alert-box" style="background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.3); color: #FCA5A5;">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span>{{ $errors->first() }}</span>
                 </div>
             @endif
 
@@ -412,138 +621,157 @@
                 <!-- Top Key Metrics -->
                 <div class="metrics-grid">
                     <div class="metric-card">
-                        <div class="metric-label">Total Glazing Leads</div>
+                        <div class="metric-header">
+                            <span class="metric-label">Total Inbound Leads</span>
+                            <i class="fa-solid fa-users-viewfinder metric-icon"></i>
+                        </div>
                         <div class="metric-val">{{ $totalLeads }}</div>
-                        <div class="metric-sub">{{ $hotLeads }} Hot Priority Leads</div>
+                        <div class="metric-sub"><i class="fa-solid fa-fire"></i> {{ $hotLeads }} Hot Priority Leads</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-label">Pipeline Value (Est.)</div>
+                        <div class="metric-header">
+                            <span class="metric-label">Pipeline Value (GBP)</span>
+                            <i class="fa-solid fa-pound-sign metric-icon"></i>
+                        </div>
                         <div class="metric-val">£{{ number_format($pipelineValue, 2) }}</div>
-                        <div class="metric-sub">Active Enquiries</div>
+                        <div class="metric-sub"><i class="fa-solid fa-chart-line"></i> Active Estimations</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-label">Won Contracts</div>
+                        <div class="metric-header">
+                            <span class="metric-label">Won Contracts</span>
+                            <i class="fa-solid fa-trophy metric-icon"></i>
+                        </div>
                         <div class="metric-val">£{{ number_format($wonValue, 2) }}</div>
-                        <div class="metric-sub">Verified Orders</div>
+                        <div class="metric-sub"><i class="fa-solid fa-certificate"></i> FENSA Orders Secured</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-label">B2B Architects & Builders</div>
+                        <div class="metric-header">
+                            <span class="metric-label">B2B Architects & Trade</span>
+                            <i class="fa-solid fa-handshake metric-icon"></i>
+                        </div>
                         <div class="metric-val">{{ $b2bProspectsCount }}</div>
-                        <div class="metric-sub">Active Trade Targets</div>
+                        <div class="metric-sub"><i class="fa-solid fa-compass-drafting"></i> Active Trade Accounts</div>
                     </div>
                 </div>
 
                 <div class="section-header">
-                    <h2 class="section-title">High-Priority Hot Enquiries</h2>
+                    <h2 class="section-title"><i class="fa-solid fa-fire-flame-curved" style="color: var(--lux-gold);"></i> Hot Priority Project Leads</h2>
+                    <button class="btn btn-dark" style="font-size: 11px;" onclick="switchTab('leads')">View All Leads →</button>
                 </div>
 
                 <div class="data-card">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Client Name</th>
-                                <th>Service Needed</th>
-                                <th>Postcode</th>
-                                <th>Budget</th>
-                                <th>Timeframe</th>
-                                <th>AI Score</th>
-                                <th>Status</th>
-                                <th>Estimated Value</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse($leads->take(6) as $lead)
-                            <tr>
-                                <td>
-                                    <strong>{{ $lead->name }}</strong><br>
-                                    <span style="font-size: 11px; color: var(--lux-muted)">{{ $lead->phone }}</span>
-                                </td>
-                                <td>{{ $lead->service_type }}</td>
-                                <td>{{ $lead->postcode ?? 'UK' }}</td>
-                                <td>{{ $lead->estimated_budget }}</td>
-                                <td>{{ $lead->timeframe }}</td>
-                                <td>
-                                    <span class="badge badge-{{ strtolower($lead->ai_classification) }}">
-                                        {{ $lead->ai_score }}/100 ({{ $lead->ai_classification }})
-                                    </span>
-                                </td>
-                                <td><span class="badge badge-stage">{{ $lead->stage }}</span></td>
-                                <td><strong>£{{ number_format($lead->estimated_value, 2) }}</strong></td>
-                                <td>
-                                    <button class="btn btn-dark" style="padding: 5px 10px; font-size: 11px;" onclick="openRescoreModal('{{ $lead->id }}', '{{ $lead->name }}', '{{ $lead->ai_qualification_summary }}', '{{ $lead->ai_recommended_action }}')">AI Insights</button>
-                                </td>
-                            </tr>
-                            @empty
-                            <tr><td colspan="9" style="text-align: center; color: var(--lux-muted);">No leads recorded yet.</td></tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Client Details</th>
+                                    <th>System Required</th>
+                                    <th>Postcode</th>
+                                    <th>Budget Guide</th>
+                                    <th>Timeframe</th>
+                                    <th>AI Score</th>
+                                    <th>Pipeline Stage</th>
+                                    <th>Estimated Value</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($leads->take(6) as $lead)
+                                <tr>
+                                    <td>
+                                        <strong>{{ $lead->name }}</strong><br>
+                                        <span style="font-size: 11px; color: var(--lux-muted)"><i class="fa-solid fa-phone" style="font-size: 10px; color: var(--lux-gold);"></i> {{ $lead->phone }}</span>
+                                    </td>
+                                    <td>{{ $lead->service_type }}</td>
+                                    <td><code style="color: var(--lux-gold);">{{ $lead->postcode ?? 'UK' }}</code></td>
+                                    <td>{{ $lead->estimated_budget }}</td>
+                                    <td>{{ $lead->timeframe }}</td>
+                                    <td>
+                                        <span class="badge badge-{{ strtolower($lead->ai_classification) }}">
+                                            <i class="fa-solid fa-bolt"></i> {{ $lead->ai_score }}/100 ({{ $lead->ai_classification }})
+                                        </span>
+                                    </td>
+                                    <td><span class="badge badge-stage">{{ $lead->stage }}</span></td>
+                                    <td><strong style="color: var(--lux-gold);">£{{ number_format($lead->estimated_value, 2) }}</strong></td>
+                                    <td>
+                                        <button class="btn btn-dark" style="padding: 4px 8px; font-size: 11px;" onclick="openRescoreModal('{{ $lead->id }}', '{{ $lead->name }}', '{{ $lead->ai_qualification_summary }}', '{{ $lead->ai_recommended_action }}')">
+                                            <i class="fa-solid fa-sparkles"></i> AI Insights
+                                        </button>
+                                    </td>
+                                </tr>
+                                @empty
+                                <tr><td colspan="9" style="text-align: center; color: var(--lux-muted);">No leads recorded yet.</td></tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
             <!-- 2. TAB: LEADS -->
             <div id="tab-leads" class="tab-content">
                 <div class="section-header">
-                    <h2 class="section-title">All Customer Leads & Enquiries</h2>
-                    <button class="btn btn-gold" onclick="openModal('addLeadModal')">+ New Lead</button>
+                    <h2 class="section-title"><i class="fa-solid fa-users" style="color: var(--lux-gold);"></i> All Customer Leads & Inquiries</h2>
+                    <button class="btn btn-gold" onclick="openModal('addLeadModal')"><i class="fa-solid fa-plus"></i> New Lead</button>
                 </div>
 
                 <div class="data-card">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Client Details</th>
-                                <th>Glazing Solution</th>
-                                <th>Postcode</th>
-                                <th>Source</th>
-                                <th>AI Lead Score</th>
-                                <th>Stage</th>
-                                <th>Update Stage</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($leads as $lead)
-                            <tr>
-                                <td>
-                                    <strong>{{ $lead->name }}</strong><br>
-                                    <span style="font-size: 11px; color: var(--lux-muted)">{{ $lead->phone }} | {{ $lead->email }}</span>
-                                </td>
-                                <td>{{ $lead->service_type }} ({{ $lead->project_type }})</td>
-                                <td>{{ $lead->postcode }}</td>
-                                <td>{{ $lead->source }}</td>
-                                <td>
-                                    <span class="badge badge-{{ strtolower($lead->ai_classification) }}">
-                                        {{ $lead->ai_score }}/100 • {{ $lead->ai_classification }}
-                                    </span>
-                                </td>
-                                <td><span class="badge badge-stage">{{ $lead->stage }}</span></td>
-                                <td>
-                                    <form action="{{ route('crm.leads.stage', $lead->id) }}" method="POST" style="display: flex; gap: 6px;">
-                                        @csrf
-                                        <select name="stage" class="form-control" style="padding: 4px 8px; font-size: 11px; width: 140px;">
-                                            <option value="New Lead" {{ $lead->stage === 'New Lead' ? 'selected' : '' }}>New Lead</option>
-                                            <option value="Contacted" {{ $lead->stage === 'Contacted' ? 'selected' : '' }}>Contacted</option>
-                                            <option value="Qualified" {{ $lead->stage === 'Qualified' ? 'selected' : '' }}>Qualified</option>
-                                            <option value="Survey Booked" {{ $lead->stage === 'Survey Booked' ? 'selected' : '' }}>Survey Booked</option>
-                                            <option value="Quote Sent" {{ $lead->stage === 'Quote Sent' ? 'selected' : '' }}>Quote Sent</option>
-                                            <option value="Won" {{ $lead->stage === 'Won' ? 'selected' : '' }}>Won</option>
-                                            <option value="Lost" {{ $lead->stage === 'Lost' ? 'selected' : '' }}>Lost</option>
-                                        </select>
-                                        <button type="submit" class="btn btn-dark" style="padding: 4px 8px; font-size: 11px;">Save</button>
-                                    </form>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Client Details</th>
+                                    <th>Glazing Solution</th>
+                                    <th>Postcode</th>
+                                    <th>Source Channel</th>
+                                    <th>AI Viability Score</th>
+                                    <th>Current Stage</th>
+                                    <th>Update Pipeline Stage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($leads as $lead)
+                                <tr>
+                                    <td>
+                                        <strong>{{ $lead->name }}</strong><br>
+                                        <span style="font-size: 11px; color: var(--lux-muted)">{{ $lead->phone }} | {{ $lead->email }}</span>
+                                    </td>
+                                    <td>{{ $lead->service_type }} ({{ $lead->project_type }})</td>
+                                    <td><code>{{ $lead->postcode }}</code></td>
+                                    <td><i class="fa-solid fa-satellite-dish" style="font-size: 10px; color: var(--lux-gold);"></i> {{ $lead->source }}</td>
+                                    <td>
+                                        <span class="badge badge-{{ strtolower($lead->ai_classification) }}">
+                                            {{ $lead->ai_score }}/100 • {{ $lead->ai_classification }}
+                                        </span>
+                                    </td>
+                                    <td><span class="badge badge-stage">{{ $lead->stage }}</span></td>
+                                    <td>
+                                        <form action="{{ route('crm.leads.stage', $lead->id) }}" method="POST" style="display: flex; gap: 6px;">
+                                            @csrf
+                                            <select name="stage" class="form-control" style="padding: 4px 8px; font-size: 11px; width: 140px;">
+                                                <option value="New Lead" {{ $lead->stage === 'New Lead' ? 'selected' : '' }}>New Lead</option>
+                                                <option value="Contacted" {{ $lead->stage === 'Contacted' ? 'selected' : '' }}>Contacted</option>
+                                                <option value="Qualified" {{ $lead->stage === 'Qualified' ? 'selected' : '' }}>Qualified</option>
+                                                <option value="Survey Booked" {{ $lead->stage === 'Survey Booked' ? 'selected' : '' }}>Survey Booked</option>
+                                                <option value="Quote Sent" {{ $lead->stage === 'Quote Sent' ? 'selected' : '' }}>Quote Sent</option>
+                                                <option value="Won" {{ $lead->stage === 'Won' ? 'selected' : '' }}>Won</option>
+                                                <option value="Lost" {{ $lead->stage === 'Lost' ? 'selected' : '' }}>Lost</option>
+                                            </select>
+                                            <button type="submit" class="btn btn-dark" style="padding: 4px 8px; font-size: 11px;">Save</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
             <!-- 3. TAB: PIPELINE KANBAN -->
             <div id="tab-pipeline" class="tab-content">
                 <div class="section-header">
-                    <h2 class="section-title">Sales Pipeline Stage Board</h2>
+                    <h2 class="section-title"><i class="fa-solid fa-table-columns" style="color: var(--lux-gold);"></i> Sales Pipeline Kanban Board</h2>
                 </div>
 
                 <div class="kanban-grid">
@@ -551,19 +779,19 @@
                     <div class="kanban-col">
                         <div class="kanban-col-header">
                             <span>{{ $stage }}</span>
-                            <span>{{ count($pipeline[$stage] ?? []) }}</span>
+                            <span class="badge badge-stage" style="font-size: 10px;">{{ count($pipeline[$stage] ?? []) }}</span>
                         </div>
                         @forelse($pipeline[$stage] ?? [] as $item)
                         <div class="kanban-item">
                             <div class="kanban-lead-name">{{ $item->name }}</div>
-                            <div class="kanban-lead-meta">{{ $item->service_type }} • {{ $item->postcode }}</div>
+                            <div class="kanban-lead-meta"><i class="fa-solid fa-door-open" style="font-size: 10px; color: var(--lux-gold);"></i> {{ $item->service_type }} • {{ $item->postcode }}</div>
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;">
                                 <span class="badge badge-{{ strtolower($item->ai_classification) }}" style="font-size: 10px;">{{ $item->ai_score }} pts</span>
                                 <strong style="color: var(--lux-gold);">£{{ number_format($item->estimated_value, 0) }}</strong>
                             </div>
                         </div>
                         @empty
-                        <div style="font-size: 11px; color: var(--lux-muted); text-align: center; margin-top: 20px;">Empty</div>
+                        <div style="font-size: 11px; color: var(--lux-muted); text-align: center; margin-top: 24px;">No active leads</div>
                         @endforelse
                     </div>
                     @endforeach
@@ -573,150 +801,158 @@
             <!-- 4. TAB: AI LEAD SCORING -->
             <div id="tab-scoring" class="tab-content">
                 <div class="section-header">
-                    <h2 class="section-title">OpenAI Lead Qualification & Scoring Diagnostics</h2>
+                    <h2 class="section-title"><i class="fa-solid fa-brain" style="color: var(--lux-gold);"></i> OpenAI Lead Viability Diagnostics</h2>
                 </div>
 
                 <div class="data-card">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Lead</th>
-                                <th>Classification</th>
-                                <th>AI viability Summary</th>
-                                <th>Recommended Sales Action</th>
-                                <th>Estimated Value</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($leads as $lead)
-                            <tr>
-                                <td>
-                                    <strong>{{ $lead->name }}</strong><br>
-                                    <span style="font-size: 11px; color: var(--lux-muted);">{{ $lead->service_type }}</span>
-                                </td>
-                                <td>
-                                    <span class="badge badge-{{ strtolower($lead->ai_classification) }}">
-                                        {{ $lead->ai_score }}/100 • {{ $lead->ai_classification }}
-                                    </span>
-                                </td>
-                                <td style="max-width: 320px; font-size: 12px; line-height: 1.4;">
-                                    {{ $lead->ai_qualification_summary ?? 'Evaluated on budget, location and timeframe viability.' }}
-                                </td>
-                                <td style="max-width: 300px; font-size: 12px; color: var(--lux-gold-light);">
-                                    {{ $lead->ai_recommended_action ?? 'Contact prospect to confirm architectural requirements.' }}
-                                </td>
-                                <td><strong>£{{ number_format($lead->estimated_value, 2) }}</strong></td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Lead Name</th>
+                                    <th>Classification</th>
+                                    <th>AI Viability Summary</th>
+                                    <th>Recommended Sales Action</th>
+                                    <th>Estimated Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($leads as $lead)
+                                <tr>
+                                    <td>
+                                        <strong>{{ $lead->name }}</strong><br>
+                                        <span style="font-size: 11px; color: var(--lux-muted);">{{ $lead->service_type }}</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-{{ strtolower($lead->ai_classification) }}">
+                                            <i class="fa-solid fa-bolt"></i> {{ $lead->ai_score }}/100 • {{ $lead->ai_classification }}
+                                        </span>
+                                    </td>
+                                    <td style="max-width: 320px; font-size: 12px; line-height: 1.4;">
+                                        {{ $lead->ai_qualification_summary ?? 'Evaluated on budget, location and timeframe viability.' }}
+                                    </td>
+                                    <td style="max-width: 300px; font-size: 12px; color: var(--lux-gold-light);">
+                                        <i class="fa-solid fa-arrow-right" style="color: var(--lux-gold); font-size: 10px;"></i> {{ $lead->ai_recommended_action ?? 'Contact prospect to confirm architectural requirements.' }}
+                                    </td>
+                                    <td><strong style="color: var(--lux-gold);">£{{ number_format($lead->estimated_value, 2) }}</strong></td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
-            <!-- 5. TAB: QUOTATIONS -->
+            <!-- 5. TAB: QUOTATIONS (20% UK VAT) -->
             <div id="tab-quotations" class="tab-content">
                 <div class="section-header">
-                    <h2 class="section-title">Quotation Management (UK 20% VAT Compliant)</h2>
-                    <button class="btn btn-gold" onclick="openModal('addQuoteModal')">+ Create Quotation</button>
+                    <h2 class="section-title"><i class="fa-solid fa-file-invoice-dollar" style="color: var(--lux-gold);"></i> Quotation Management (UK 20% VAT Compliant)</h2>
+                    <button class="btn btn-gold" onclick="openModal('addQuoteModal')"><i class="fa-solid fa-plus"></i> Create Quotation</button>
                 </div>
 
                 <div class="data-card">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Quote #</th>
-                                <th>Client Name</th>
-                                <th>Project Description</th>
-                                <th>Net Subtotal</th>
-                                <th>VAT (20%)</th>
-                                <th>Total (GBP)</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse($quotations as $quote)
-                            <tr>
-                                <td><strong style="color: var(--lux-gold);">{{ $quote->quote_number }}</strong></td>
-                                <td>{{ $quote->customer_name }}</td>
-                                <td>{{ $quote->project_title }}</td>
-                                <td>£{{ number_format($quote->subtotal, 2) }}</td>
-                                <td>£{{ number_format($quote->vat_amount, 2) }}</td>
-                                <td><strong>£{{ number_format($quote->total_amount, 2) }}</strong></td>
-                                <td><span class="badge badge-stage">{{ $quote->status }}</span></td>
-                                <td>
-                                    <a href="{{ route('crm.quotation.view', $quote->id) }}" target="_blank" class="btn btn-dark" style="padding: 4px 10px; font-size: 11px;">View & Print 📄</a>
-                                </td>
-                            </tr>
-                            @empty
-                            <tr><td colspan="8" style="text-align: center; color: var(--lux-muted);">No quotations generated yet.</td></tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Quote #</th>
+                                    <th>Client Name</th>
+                                    <th>Project Title</th>
+                                    <th>Net Subtotal</th>
+                                    <th>VAT (20%)</th>
+                                    <th>Total (GBP)</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($quotations as $quote)
+                                <tr>
+                                    <td><strong style="color: var(--lux-gold);">{{ $quote->quote_number }}</strong></td>
+                                    <td>{{ $quote->customer_name }}</td>
+                                    <td>{{ $quote->project_title }}</td>
+                                    <td>£{{ number_format($quote->subtotal, 2) }}</td>
+                                    <td>£{{ number_format($quote->vat_amount, 2) }}</td>
+                                    <td><strong style="color: var(--lux-gold);">£{{ number_format($quote->total_amount, 2) }}</strong></td>
+                                    <td><span class="badge badge-stage">{{ $quote->status }}</span></td>
+                                    <td>
+                                        <a href="{{ route('crm.quotation.view', $quote->id) }}" target="_blank" class="btn btn-dark" style="padding: 4px 10px; font-size: 11px;">
+                                            <i class="fa-solid fa-print"></i> View & Print
+                                        </a>
+                                    </td>
+                                </tr>
+                                @empty
+                                <tr><td colspan="8" style="text-align: center; color: var(--lux-muted);">No quotations generated yet.</td></tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
             <!-- 6. TAB: B2B TRADE PROSPECTS -->
             <div id="tab-b2b" class="tab-content">
                 <div class="section-header">
-                    <h2 class="section-title">B2B Architects, Builders & Developers Directory</h2>
-                    <button class="btn btn-gold" onclick="openModal('addB2bModal')">+ Add Trade Prospect</button>
+                    <h2 class="section-title"><i class="fa-solid fa-building" style="color: var(--lux-gold);"></i> B2B Architects, Builders & Developers Directory</h2>
+                    <button class="btn btn-gold" onclick="openModal('addB2bModal')"><i class="fa-solid fa-plus"></i> Add Trade Target</button>
                 </div>
 
                 <div class="data-card">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Company Name</th>
-                                <th>Category</th>
-                                <th>Key Contact</th>
-                                <th>City / Region</th>
-                                <th>Status</th>
-                                <th>AI Trade Pitch</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse($b2bProspects as $prospect)
-                            <tr>
-                                <td>
-                                    <strong>{{ $prospect->company_name }}</strong><br>
-                                    <a href="{{ $prospect->website }}" target="_blank" style="font-size: 11px; color: var(--lux-muted); text-decoration: none;">{{ $prospect->website }}</a>
-                                </td>
-                                <td>{{ $prospect->category }}</td>
-                                <td>{{ $prospect->contact_person }} ({{ $prospect->job_title }})</td>
-                                <td>{{ $prospect->city }}</td>
-                                <td><span class="badge badge-stage">{{ $prospect->status }}</span></td>
-                                <td>
-                                    <button class="btn btn-dark" style="padding: 4px 10px; font-size: 11px;" onclick="viewPitch('{{ addslashes($prospect->company_name) }}', `{{ addslashes($prospect->ai_personalized_pitch) }}`)">Preview Pitch ✉️</button>
-                                </td>
-                                <td>
-                                    <span style="font-size: 11px; color: var(--lux-muted)">{{ $prospect->email }}</span>
-                                </td>
-                            </tr>
-                            @empty
-                            <tr><td colspan="7" style="text-align: center; color: var(--lux-muted);">No B2B prospects added yet.</td></tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Company / Practice</th>
+                                    <th>Category</th>
+                                    <th>Contact Person</th>
+                                    <th>City / Region</th>
+                                    <th>Status</th>
+                                    <th>AI Trade Pitch</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($b2bProspects as $prospect)
+                                <tr>
+                                    <td>
+                                        <strong>{{ $prospect->company_name }}</strong><br>
+                                        <a href="{{ $prospect->website }}" target="_blank" style="font-size: 11px; color: var(--lux-gold); text-decoration: none;"><i class="fa-solid fa-link"></i> {{ $prospect->website }}</a>
+                                    </td>
+                                    <td>{{ $prospect->category }}</td>
+                                    <td>{{ $prospect->contact_person }} ({{ $prospect->job_title }})</td>
+                                    <td>{{ $prospect->city }}</td>
+                                    <td><span class="badge badge-stage">{{ $prospect->status }}</span></td>
+                                    <td>
+                                        <button class="btn btn-dark" style="padding: 4px 10px; font-size: 11px;" onclick="viewPitch('{{ addslashes($prospect->company_name) }}', `{{ addslashes($prospect->ai_personalized_pitch) }}`)">
+                                            <i class="fa-solid fa-envelope"></i> Preview Pitch
+                                        </button>
+                                    </td>
+                                    <td><span style="font-size: 11px; color: var(--lux-muted)">{{ $prospect->email }}</span></td>
+                                </tr>
+                                @empty
+                                <tr><td colspan="7" style="text-align: center; color: var(--lux-muted);">No B2B trade targets recorded.</td></tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
             <!-- 7. TAB: AI EMAIL GENERATOR -->
             <div id="tab-ai-emails" class="tab-content">
                 <div class="section-header">
-                    <h2 class="section-title">OpenAI Commercial Email Generator</h2>
+                    <h2 class="section-title"><i class="fa-solid fa-envelope-open-text" style="color: var(--lux-gold);"></i> OpenAI Commercial Email Assistant</h2>
                 </div>
 
                 <div class="data-card" style="padding: 24px;">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
                         <div>
                             <div class="form-group">
                                 <label class="form-label">Email Campaign Type</label>
                                 <select id="aiEmailType" class="form-control">
-                                    <option value="quote_followup">Quotation Follow-Up (Warm & High Conversion)</option>
+                                    <option value="quote_followup">Quotation Follow-Up (High Conversion)</option>
                                     <option value="survey_confirmation">Laser Site Survey Confirmation</option>
-                                    <option value="architect_trade_pitch">RIBA Architect & Trade Partner Introduction</option>
+                                    <option value="architect_trade_pitch">RIBA Architect & Trade Partner Pitch</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -731,7 +967,7 @@
                                 <label class="form-label">Custom Notes / Discount Offered</label>
                                 <textarea id="aiCustomDetails" class="form-control" rows="3" placeholder="e.g. Offering free trickle vents upgrade or 5% early booking survey discount."></textarea>
                             </div>
-                            <button class="btn btn-gold" onclick="generateAiEmail()">Generate Email with AI ⚡</button>
+                            <button class="btn btn-gold" onclick="generateAiEmail()"><i class="fa-solid fa-wand-magic-sparkles"></i> Generate Email with AI</button>
                         </div>
 
                         <div>
@@ -740,10 +976,10 @@
                                 <input type="text" id="generatedSubject" class="form-control" readonly>
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Generated Body</label>
+                                <label class="form-label">Generated Email Body</label>
                                 <textarea id="generatedBody" class="form-control" rows="11" readonly></textarea>
                             </div>
-                            <button class="btn btn-dark" onclick="copyEmail()">Copy to Clipboard 📋</button>
+                            <button class="btn btn-dark" onclick="copyEmail()"><i class="fa-solid fa-copy"></i> Copy to Clipboard</button>
                         </div>
                     </div>
                 </div>
@@ -752,24 +988,24 @@
             <!-- 8. TAB: CAMPAIGNS -->
             <div id="tab-campaigns" class="tab-content">
                 <div class="section-header">
-                    <h2 class="section-title">Email Outreach Campaigns</h2>
+                    <h2 class="section-title"><i class="fa-solid fa-bullhorn" style="color: var(--lux-gold);"></i> Active Email Broadcast Campaigns</h2>
                 </div>
                 <div class="data-card" style="padding: 24px;">
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
                         <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--lux-border-light); padding: 18px; border-radius: 8px;">
-                            <h3 style="color: var(--lux-gold); font-size: 15px; margin-bottom: 8px;">London Architects Outreach</h3>
+                            <h3 style="color: var(--lux-gold); font-size: 14px; margin-bottom: 6px;"><i class="fa-solid fa-landmark"></i> London Architects Network</h3>
                             <p style="font-size: 12px; color: var(--lux-muted); margin-bottom: 12px;">Audience: 120 RIBA Chartered Practices in London & Surrey.</p>
-                            <span class="badge badge-stage">Open Rate: 42%</span>
+                            <span class="badge badge-stage">Open Rate: 42% • Replies: 18</span>
                         </div>
                         <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--lux-border-light); padding: 18px; border-radius: 8px;">
-                            <h3 style="color: var(--lux-gold); font-size: 15px; margin-bottom: 8px;">Quote Sent Nurture Sequence</h3>
-                            <p style="font-size: 12px; color: var(--lux-muted); margin-bottom: 12px;">Audience: Residential clients with active proposals older than 3 days.</p>
-                            <span class="badge badge-stage">Response Rate: 28%</span>
+                            <h3 style="color: var(--lux-gold); font-size: 14px; margin-bottom: 6px;"><i class="fa-solid fa-clock-rotate-left"></i> Quote Sent 48h Follow-up</h3>
+                            <p style="font-size: 12px; color: var(--lux-muted); margin-bottom: 12px;">Audience: Residential proposals older than 48 hours.</p>
+                            <span class="badge badge-stage">Response Rate: 28% • Won: 4</span>
                         </div>
                         <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--lux-border-light); padding: 18px; border-radius: 8px;">
-                            <h3 style="color: var(--lux-gold); font-size: 15px; margin-bottom: 8px;">Commercial Fit-Out Contractors</h3>
-                            <p style="font-size: 12px; color: var(--lux-muted); margin-bottom: 12px;">Audience: Main contractors tendering retail & office developments.</p>
-                            <span class="badge badge-stage">Meeting Rate: 16%</span>
+                            <h3 style="color: var(--lux-gold); font-size: 14px; margin-bottom: 6px;"><i class="fa-solid fa-hard-hat"></i> Commercial Fit-Out Contractors</h3>
+                            <p style="font-size: 12px; color: var(--lux-muted); margin-bottom: 12px;">Audience: Main contractors tendering retail & facade packages.</p>
+                            <span class="badge badge-stage">Meeting Rate: 16% • Tenders: 2</span>
                         </div>
                     </div>
                 </div>
@@ -778,23 +1014,23 @@
             <!-- 9. TAB: TASKS -->
             <div id="tab-tasks" class="tab-content">
                 <div class="section-header">
-                    <h2 class="section-title">Site Surveys & Sales Follow-Up Tasks</h2>
+                    <h2 class="section-title"><i class="fa-solid fa-calendar-check" style="color: var(--lux-gold);"></i> Site Surveys & Action Reminders</h2>
                 </div>
                 <div class="data-card" style="padding: 24px;">
                     <div style="display: flex; flex-direction: column; gap: 12px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); padding: 14px 18px; border-radius: 8px; border-left: 3px solid #10B981;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); padding: 14px 18px; border-radius: 8px; border-left: 3px solid #10B981; flex-wrap: wrap; gap: 10px;">
                             <div>
-                                <strong style="color: #FFF;">Laser Site Survey – Charles Kensington</strong><br>
+                                <strong style="color: #FFF;"><i class="fa-solid fa-ruler-combined" style="color: var(--lux-gold);"></i> Laser Site Survey – Charles Kensington</strong><br>
                                 <span style="font-size: 12px; color: var(--lux-muted);">42 King's Road, Chelsea • Friday 10:00 AM • Surveyor: Oliver Davies</span>
                             </div>
                             <span class="badge badge-hot">High Priority</span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); padding: 14px 18px; border-radius: 8px; border-left: 3px solid var(--lux-gold);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); padding: 14px 18px; border-radius: 8px; border-left: 3px solid var(--lux-gold); flex-wrap: wrap; gap: 10px;">
                             <div>
-                                <strong style="color: #FFF;">Quotation Technical Review – Victoria Sterling</strong><br>
+                                <strong style="color: #FFF;"><i class="fa-solid fa-file-signature" style="color: var(--lux-gold);"></i> Specification Review – Victoria Sterling</strong><br>
                                 <span style="font-size: 12px; color: var(--lux-muted);">Richmond Hill project • Verify Cortizo Cor Vision glass weights with structural engineer</span>
                             </div>
-                            <span class="badge badge-warm">Pending</span>
+                            <span class="badge badge-warm">Pending Review</span>
                         </div>
                     </div>
                 </div>
@@ -803,84 +1039,88 @@
             <!-- 10. TAB: SEO PERFORMANCE -->
             <div id="tab-seo" class="tab-content">
                 <div class="section-header">
-                    <h2 class="section-title">UK Glazing Target Keywords & Organic Rankings</h2>
+                    <h2 class="section-title"><i class="fa-solid fa-arrow-trend-up" style="color: var(--lux-gold);"></i> UK Glazing Target Keywords & Organic Google Rankings</h2>
                 </div>
 
                 <div class="data-card">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Target UK Keyword</th>
-                                <th>Target Landing Page</th>
-                                <th>Search Intent</th>
-                                <th>Priority</th>
-                                <th>Current Google UK Rank</th>
-                                <th>Target Rank</th>
-                                <th>Estimated Monthly Volume</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($seoKeywords as $kw)
-                            <tr>
-                                <td><strong>{{ $kw->keyword }}</strong></td>
-                                <td><code style="color: var(--lux-gold);">{{ $kw->target_page }}</code></td>
-                                <td>{{ $kw->intent }}</td>
-                                <td><span class="badge badge-{{ $kw->priority === 'High' ? 'hot' : 'warm' }}">{{ $kw->priority }}</span></td>
-                                <td><strong style="color: #10B981;">#{{ $kw->current_position }}</strong></td>
-                                <td>#{{ $kw->target_position }}</td>
-                                <td>{{ number_format($kw->search_volume_est) }}/mo</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Target UK Keyword</th>
+                                    <th>Target Landing Page</th>
+                                    <th>Search Intent</th>
+                                    <th>Priority</th>
+                                    <th>Current Google UK Rank</th>
+                                    <th>Target Rank</th>
+                                    <th>Monthly Search Volume</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($seoKeywords as $kw)
+                                <tr>
+                                    <td><strong>{{ $kw->keyword }}</strong></td>
+                                    <td><code style="color: var(--lux-gold);">{{ $kw->target_page }}</code></td>
+                                    <td>{{ $kw->intent }}</td>
+                                    <td><span class="badge badge-{{ $kw->priority === 'High' ? 'hot' : 'warm' }}">{{ $kw->priority }}</span></td>
+                                    <td><strong style="color: #10B981;"><i class="fa-solid fa-medal"></i> #{{ $kw->current_position }}</strong></td>
+                                    <td>#{{ $kw->target_position }}</td>
+                                    <td>{{ number_format($kw->search_volume_est) }} searches/mo</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
             <!-- 11. TAB: ADVERTISING & PPC -->
             <div id="tab-advertising" class="tab-content">
                 <div class="section-header">
-                    <h2 class="section-title">Paid Media Performance (Google Search Ads & Meta)</h2>
+                    <h2 class="section-title"><i class="fa-brands fa-google" style="color: var(--lux-gold);"></i> Paid Advertising & Performance Metrics (Google & Meta)</h2>
                 </div>
 
                 <div class="data-card">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Marketing Channel</th>
-                                <th>Period</th>
-                                <th>Spend (GBP)</th>
-                                <th>Impressions</th>
-                                <th>Clicks</th>
-                                <th>Qualified Leads</th>
-                                <th>Cost Per Lead (CPL)</th>
-                                <th>Won Deals</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($marketingMetrics as $m)
-                            <tr>
-                                <td><strong>{{ $m->channel }}</strong></td>
-                                <td>{{ $m->period_label }}</td>
-                                <td>£{{ number_format($m->spend_gbp, 2) }}</td>
-                                <td>{{ number_format($m->impressions) }}</td>
-                                <td>{{ number_format($m->clicks) }}</td>
-                                <td><strong style="color: var(--lux-gold);">{{ $m->leads_generated }}</strong></td>
-                                <td>£{{ number_format($m->cost_per_lead_gbp, 2) }}</td>
-                                <td>{{ $m->conversions_won }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Channel</th>
+                                    <th>Period</th>
+                                    <th>Spend (GBP)</th>
+                                    <th>Impressions</th>
+                                    <th>Clicks</th>
+                                    <th>Qualified Leads</th>
+                                    <th>Cost Per Lead (CPL)</th>
+                                    <th>Won Contracts</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($marketingMetrics as $m)
+                                <tr>
+                                    <td><strong>{{ $m->channel }}</strong></td>
+                                    <td>{{ $m->period_label }}</td>
+                                    <td>£{{ number_format($m->spend_gbp, 2) }}</td>
+                                    <td>{{ number_format($m->impressions) }}</td>
+                                    <td>{{ number_format($m->clicks) }}</td>
+                                    <td><strong style="color: var(--lux-gold);">{{ $m->leads_generated }}</strong></td>
+                                    <td>£{{ number_format($m->cost_per_lead_gbp, 2) }}</td>
+                                    <td>{{ $m->conversions_won }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
             <!-- 12. TAB: SETTINGS & OPENAI -->
             <div id="tab-settings" class="tab-content">
                 <div class="section-header">
-                    <h2 class="section-title">System Settings & OpenAI API Integration</h2>
+                    <h2 class="section-title"><i class="fa-solid fa-sliders" style="color: var(--lux-gold);"></i> System Settings & OpenAI API Integration</h2>
                 </div>
 
-                <div class="data-card" style="padding: 24px; max-width: 600px;">
+                <div class="data-card" style="padding: 24px; max-width: 650px;">
                     <form action="{{ route('crm.settings.ai') }}" method="POST">
                         @csrf
                         <div class="form-group">
@@ -896,10 +1136,14 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label class="form-label">Notification Email (.env: ADMIN_MAIL)</label>
+                            <input type="text" class="form-control" value="{{ env('ADMIN_MAIL', 'tarun@thenexteck.com') }}" readonly>
+                        </div>
+                        <div class="form-group">
                             <label class="form-label">UK Standard VAT Rate</label>
                             <input type="text" class="form-control" value="20%" readonly>
                         </div>
-                        <button type="submit" class="btn btn-gold">Save Settings</button>
+                        <button type="submit" class="btn btn-gold"><i class="fa-solid fa-floppy-disk"></i> Save AI Settings</button>
                     </form>
                 </div>
             </div>
@@ -910,7 +1154,7 @@
     <!-- MODAL: ADD LEAD -->
     <div id="addLeadModal" class="modal">
         <div class="modal-content">
-            <h3 style="font-family: 'Cinzel', serif; color: var(--lux-gold); margin-bottom: 16px;">Register New Glazing Enquiry</h3>
+            <h3 style="font-family: 'Cinzel', serif; color: var(--lux-gold); margin-bottom: 16px;"><i class="fa-solid fa-plus-circle"></i> Register New Glazing Enquiry</h3>
             <form action="{{ route('crm.leads.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
@@ -920,7 +1164,7 @@
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
                     <div class="form-group">
                         <label class="form-label">Phone Number</label>
-                        <input type="text" name="phone" class="form-control" required placeholder="e.g. +44 7700 900123">
+                        <input type="text" name="phone" class="form-control" required placeholder="+44 7700 900123">
                     </div>
                     <div class="form-group">
                         <label class="form-label">Email Address</label>
@@ -967,12 +1211,12 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Project Notes & Specifications</label>
-                    <textarea name="notes" class="form-control" rows="2" placeholder="e.g. 5m structural opening, level threshold required, Anthracite Grey RAL 7016."></textarea>
+                    <label class="form-label">Project Notes & Dimensions</label>
+                    <textarea name="notes" class="form-control" rows="2" placeholder="e.g. 5m structural opening, flush threshold, Anthracite Grey RAL 7016."></textarea>
                 </div>
                 <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 14px;">
                     <button type="button" class="btn btn-dark" onclick="closeModal('addLeadModal')">Cancel</button>
-                    <button type="submit" class="btn btn-gold">Run AI Scoring & Save Lead</button>
+                    <button type="submit" class="btn btn-gold"><i class="fa-solid fa-bolt"></i> Run AI Score & Save</button>
                 </div>
             </form>
         </div>
@@ -980,23 +1224,23 @@
 
     <!-- MODAL: ADD QUOTATION -->
     <div id="addQuoteModal" class="modal">
-        <div class="modal-content" style="max-width: 650px;">
-            <h3 style="font-family: 'Cinzel', serif; color: var(--lux-gold); margin-bottom: 16px;">Generate Client Quotation</h3>
+        <div class="modal-content" style="max-width: 640px;">
+            <h3 style="font-family: 'Cinzel', serif; color: var(--lux-gold); margin-bottom: 16px;"><i class="fa-solid fa-file-invoice"></i> Generate Client Quotation</h3>
             <form action="{{ route('crm.quotations.store') }}" method="POST">
                 @csrf
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
                     <div class="form-group">
                         <label class="form-label">Customer Name</label>
-                        <input type="text" name="customer_name" class="form-control" required placeholder="e.g. Lord & Lady Hamilton">
+                        <input type="text" name="customer_name" class="form-control" required placeholder="Lord & Lady Hamilton">
                     </div>
                     <div class="form-group">
                         <label class="form-label">Customer Email</label>
-                        <input type="email" name="customer_email" class="form-control" placeholder="customer@example.co.uk">
+                        <input type="email" name="customer_email" class="form-control" placeholder="client@example.co.uk">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Project Title</label>
-                    <input type="text" name="project_title" class="form-control" value="Cortizo Cor Vision Plus Sliding Doors Supply & FENSA Installation">
+                    <input type="text" name="project_title" class="form-control" value="Cortizo Cor Vision Plus Sliding Doors Supply & Installation">
                 </div>
                 <div class="form-group">
                     <label class="form-label">Site Address</label>
@@ -1008,27 +1252,27 @@
                         <input type="text" name="product_name" class="form-control" value="Schüco ASS 70 FD Bifold Suite" required>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Quantity</label>
+                        <label class="form-label">Qty</label>
                         <input type="number" name="quantity" class="form-control" value="1" min="1" required>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Net Unit Price (£)</label>
+                        <label class="form-label">Net Price (£)</label>
                         <input type="number" step="0.01" name="unit_price" class="form-control" value="8500.00" required>
                     </div>
                 </div>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
                     <div class="form-group">
-                        <label class="form-label">Color Finish</label>
+                        <label class="form-label">Colour Finish</label>
                         <input type="text" name="color_finish" class="form-control" value="Anthracite Grey RAL 7016 Matt">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Glass Specification</label>
+                        <label class="form-label">Glass Spec</label>
                         <input type="text" name="glass_specification" class="form-control" value="28mm Toughened Solar-Control Low-E Argon">
                     </div>
                 </div>
                 <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 14px;">
                     <button type="button" class="btn btn-dark" onclick="closeModal('addQuoteModal')">Cancel</button>
-                    <button type="submit" class="btn btn-gold">Create Quote (+20% UK VAT)</button>
+                    <button type="submit" class="btn btn-gold"><i class="fa-solid fa-check"></i> Create Quote (+20% UK VAT)</button>
                 </div>
             </form>
         </div>
@@ -1037,7 +1281,7 @@
     <!-- MODAL: ADD B2B PROSPECT -->
     <div id="addB2bModal" class="modal">
         <div class="modal-content">
-            <h3 style="font-family: 'Cinzel', serif; color: var(--lux-gold); margin-bottom: 16px;">Add B2B Architect / Developer Target</h3>
+            <h3 style="font-family: 'Cinzel', serif; color: var(--lux-gold); margin-bottom: 16px;"><i class="fa-solid fa-building"></i> Add Trade Target Practice</h3>
             <form action="{{ route('crm.b2b.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
@@ -1075,7 +1319,50 @@
                 </div>
                 <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 14px;">
                     <button type="button" class="btn btn-dark" onclick="closeModal('addB2bModal')">Cancel</button>
-                    <button type="submit" class="btn btn-gold">Save & Generate AI Outreach</button>
+                    <button type="submit" class="btn btn-gold"><i class="fa-solid fa-sparkles"></i> Save & Generate Pitch</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: CHANGE PASSWORD -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <h3 style="font-family: 'Cinzel', serif; color: var(--lux-gold); margin-bottom: 16px;">
+                <i class="fa-solid fa-key" style="margin-right: 6px;"></i> Change Account Password
+            </h3>
+            <form action="{{ route('crm.change-password') }}" method="POST">
+                @csrf
+                <div class="form-group">
+                    <label class="form-label">Current Password</label>
+                    <div style="position: relative;">
+                        <input type="password" name="current_password" id="curPass" class="form-control" required style="padding-right: 38px;">
+                        <span onclick="toggleModalEye('curPass', 'curEye')" style="position: absolute; right: 12px; top: 10px; cursor: pointer; color: var(--lux-muted);">
+                            <i class="fa-solid fa-eye" id="curEye"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">New Password (Min 8 Characters)</label>
+                    <div style="position: relative;">
+                        <input type="password" name="new_password" id="newPass" class="form-control" required minlength="8" style="padding-right: 38px;">
+                        <span onclick="toggleModalEye('newPass', 'newEye')" style="position: absolute; right: 12px; top: 10px; cursor: pointer; color: var(--lux-muted);">
+                            <i class="fa-solid fa-eye" id="newEye"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Confirm New Password</label>
+                    <div style="position: relative;">
+                        <input type="password" name="new_password_confirmation" id="confPass" class="form-control" required minlength="8" style="padding-right: 38px;">
+                        <span onclick="toggleModalEye('confPass', 'confEye')" style="position: absolute; right: 12px; top: 10px; cursor: pointer; color: var(--lux-muted);">
+                            <i class="fa-solid fa-eye" id="confEye"></i>
+                        </span>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+                    <button type="button" class="btn btn-dark" onclick="closeModal('passwordModal')">Cancel</button>
+                    <button type="submit" class="btn btn-gold"><i class="fa-solid fa-check"></i> Update Password</button>
                 </div>
             </form>
         </div>
@@ -1087,11 +1374,11 @@
             <h3 style="font-family: 'Cinzel', serif; color: var(--lux-gold); margin-bottom: 12px;" id="insightLeadName">AI Qualification Summary</h3>
             <div style="margin-bottom: 16px;">
                 <label class="form-label">Viability Analysis</label>
-                <div id="insightSummary" style="background: rgba(0,0,0,0.4); padding: 12px; border-radius: 6px; font-size: 13px; line-height: 1.5; color: #FFF;"></div>
+                <div id="insightSummary" style="background: rgba(0,0,0,0.45); padding: 12px; border-radius: 6px; font-size: 13px; line-height: 1.5; color: #FFF;"></div>
             </div>
             <div style="margin-bottom: 20px;">
                 <label class="form-label">Recommended Action</label>
-                <div id="insightAction" style="background: rgba(212, 175, 55, 0.1); border: 1px solid var(--lux-border); padding: 12px; border-radius: 6px; font-size: 13px; color: var(--lux-gold-light);"></div>
+                <div id="insightAction" style="background: rgba(229, 210, 165, 0.1); border: 1px solid var(--lux-border); padding: 12px; border-radius: 6px; font-size: 13px; color: var(--lux-gold);"></div>
             </div>
             <div style="display: flex; justify-content: flex-end;">
                 <button type="button" class="btn btn-gold" onclick="closeModal('aiInsightsModal')">Close</button>
@@ -1101,19 +1388,23 @@
 
     <!-- MODAL: PREVIEW PITCH -->
     <div id="pitchModal" class="modal">
-        <div class="modal-content" style="max-width: 650px;">
+        <div class="modal-content" style="max-width: 640px;">
             <h3 style="font-family: 'Cinzel', serif; color: var(--lux-gold); margin-bottom: 12px;" id="pitchCompanyTitle">Personalized B2B Trade Outreach</h3>
             <div class="form-group">
                 <textarea id="pitchBody" class="form-control" rows="12" style="font-size: 12px; line-height: 1.5;" readonly></textarea>
             </div>
             <div style="display: flex; justify-content: flex-end; gap: 10px;">
-                <button class="btn btn-dark" onclick="copyPitch()">Copy Text 📋</button>
+                <button class="btn btn-dark" onclick="copyPitch()"><i class="fa-solid fa-copy"></i> Copy Text</button>
                 <button class="btn btn-gold" onclick="closeModal('pitchModal')">Close</button>
             </div>
         </div>
     </div>
 
     <script>
+        function toggleSidebar() {
+            document.getElementById('sidebarNav').classList.toggle('mobile-open');
+        }
+
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
@@ -1121,7 +1412,12 @@
             const target = document.getElementById('tab-' + tabId);
             if (target) target.classList.add('active');
 
-            event.currentTarget.classList.add('active');
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
+            }
+
+            // Close mobile sidebar on tab switch if open
+            document.getElementById('sidebarNav').classList.remove('mobile-open');
         }
 
         function openModal(id) {
@@ -1130,6 +1426,20 @@
 
         function closeModal(id) {
             document.getElementById(id).classList.remove('active');
+        }
+
+        function toggleModalEye(inputId, eyeId) {
+            const input = document.getElementById(inputId);
+            const eye = document.getElementById(eyeId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                eye.classList.remove('fa-eye');
+                eye.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                eye.classList.remove('fa-eye-slash');
+                eye.classList.add('fa-eye');
+            }
         }
 
         function openRescoreModal(id, name, summary, action) {
